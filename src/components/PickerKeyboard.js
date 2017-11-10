@@ -39,7 +39,7 @@ class PickerKeyboard extends Component {
   }
 
   shouldComponentUpdate(prevProps, prevState) {
-    if (prevState.visible != this.state.visible && this.state.shouldUpdateValue && this.picker) {
+    if (prevState.visible != this.state.visible && this.picker) {
       this.onSubmitPress(this.picker.props.selectedValue);
     }
 
