@@ -37,6 +37,14 @@ class PickerKeyboard extends Component {
     }
   }
 
+  shouldComponentUpdate(prevProps, prevState) {
+    if (prevState.visible != this.state.visible && this.picker) {
+      this.onSubmitPress(this.picker.props.selectedValue);
+    }
+
+    return true;
+  }
+
   focus() {
     this.setVisible(true);
   }
@@ -48,11 +56,11 @@ class PickerKeyboard extends Component {
     onCancel && onCancel();
   }
 
-  onSubmitPress() {
+  onSubmitPress(value) {
     this.setVisible(false);
 
     let onSubmit = this.props.onSubmit;
-    onSubmit && onSubmit(this.state.value);
+    onSubmit && onSubmit(value || this.state.value);
   }
 
   onValueChange(value) {
